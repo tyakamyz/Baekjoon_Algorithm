@@ -23,13 +23,15 @@ import java.util.Stack;
 public class Q_2493_탑 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		String fin = "";
 		
 		int N = Integer.parseInt(br.readLine());
 		String[] top = br.readLine().split(" ");
 		
 		Stack<Integer> topList = new Stack<>();
 		Stack<Integer> topList_temp = new Stack<>();
-		Stack<Integer> topList_fin = new Stack<>();
+		int topList_fin = 0;
 		
 		for(int i=0; i<N; i++) {
 			topList.push(Integer.parseInt(top[i]));
@@ -49,7 +51,7 @@ public class Q_2493_탑 {
 				topList_temp.push(top_index);
 				minus++;
 				if(top_h <= top_index) {
-					topList_fin.push(N-minus);
+					topList_fin = N-minus;
 					break_yn = true;
 				}
 				
@@ -59,7 +61,11 @@ public class Q_2493_탑 {
 					}
 					
 					if(!break_yn) {
-						topList_fin.push(0);
+						//sb.insert(0, "0" + " ");
+						fin = "0 " + fin;
+					}else {
+						//sb.insert(0, topList_fin + " ");
+						fin = topList_fin + " " + fin;
 					}
 					num++;
 					minus = num;
@@ -68,14 +74,11 @@ public class Q_2493_탑 {
 				}
 			}
 		}
-		topList.clear();
-		topList_temp.clear();
 		
-		topList_fin.push(0);
+		//sb.insert(0, "0" + " ");
+		fin = "0 " + fin;
 		
-		while(!topList_fin.isEmpty()) {
-			System.out.print(topList_fin.pop() + " ");
-		}
+		System.out.print(fin);
 		
 	}
 }
