@@ -26,7 +26,8 @@ public class Q_1978_소수찾기 {
                 .collect(Collectors.toList());
     }
 
-    public static boolean cal(int n){
+    /* 에라토스테네스의 체 */
+    public static boolean eratosthenes(int n){
         // 0과 1은 소수가 아니므로 바로 종료.
         if(n == 0) return false;
         if(n == 1) return false;
@@ -50,7 +51,7 @@ public class Q_1978_소수찾기 {
 
         int resultCount = 0;
         for(int n : integerList){
-            if(cal(n)) resultCount++;
+            if(eratosthenes(n)) resultCount++;
         }
 
         System.out.println(resultCount);
