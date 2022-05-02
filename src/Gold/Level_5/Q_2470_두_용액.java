@@ -35,6 +35,15 @@ public class Q_2470_두_용액 {
         int[] arr = Arrays.stream(bf.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         Arrays.sort(arr);
 
+        /* 모두 양수 또는 모두 음수일 경우 바로 출력 */
+        if(arr[0] >= 0) {
+            System.out.println(arr[0] + " " + arr[1]);
+            return;
+        } else if(arr[arr.length-1] <= 0) {
+            System.out.println(arr[arr.length-2] + " " + arr[arr.length-1]);
+            return;
+        }
+
         int start = 0;
         int end = arr.length-1;
         int differenceVal = Integer.MAX_VALUE;
@@ -47,7 +56,7 @@ public class Q_2470_두_용액 {
 
             int sum = arr[start] + arr[end];
 
-            if(differenceVal > Math.abs(sum)){
+            if(Math.abs(differenceVal) > Math.abs(sum)){
                 differenceVal = sum;
 
                 result[0] = arr[start];
@@ -58,11 +67,19 @@ public class Q_2470_두_용액 {
                 }
             }
 
-            if(sum > 0 && arr[start] > 0){
+            if(Math.abs(differenceVal) > Math.abs(arr[start+1] + arr[end])){
+                start++;
+            }else if(Math.abs(differenceVal) > Math.abs(arr[start] + arr[end-1])){
+                end--;
+            }else{
+                break;
+            }
+
+           /* if((sum > 0 && arr[start] > 0) || (sum > 0 && arr[start+1] < 0)){
                 start++;
             }else{
                 end--;
-            }
+            }*/
 
         }
 
