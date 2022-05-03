@@ -35,51 +35,27 @@ public class Q_2470_두_용액 {
         int[] arr = Arrays.stream(bf.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         Arrays.sort(arr);
 
-        /* 모두 양수 또는 모두 음수일 경우 바로 출력 */
-        if(arr[0] >= 0) {
-            System.out.println(arr[0] + " " + arr[1]);
-            return;
-        } else if(arr[arr.length-1] <= 0) {
-            System.out.println(arr[arr.length-2] + " " + arr[arr.length-1]);
-            return;
-        }
-
         int start = 0;
         int end = arr.length-1;
         int differenceVal = Integer.MAX_VALUE;
         int[] result = new int[2];
 
-        while (true) {
-            if(start == end){
-                break;
-            }
+        while (start < end) {
 
             int sum = arr[start] + arr[end];
 
-            if(Math.abs(differenceVal) > Math.abs(sum)){
-                differenceVal = sum;
-
+            if(Math.abs(sum) < differenceVal) {
                 result[0] = arr[start];
                 result[1] = arr[end];
-
-                if(differenceVal == 0){
-                    break;
-                }
+                differenceVal = Math.abs(sum);
             }
 
-            if(Math.abs(differenceVal) > Math.abs(arr[start+1] + arr[end])){
-                start++;
-            }else if(Math.abs(differenceVal) > Math.abs(arr[start] + arr[end-1])){
+            if(sum > 0) {
                 end--;
-            }else{
-                break;
             }
-
-           /* if((sum > 0 && arr[start] > 0) || (sum > 0 && arr[start+1] < 0)){
+            else {
                 start++;
-            }else{
-                end--;
-            }*/
+            }
 
         }
 
