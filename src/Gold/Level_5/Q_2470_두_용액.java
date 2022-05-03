@@ -33,6 +33,11 @@ public class Q_2470_두_용액 {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
         int[] arr = Arrays.stream(bf.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        
+        if(n != arr.length){
+            throw new IllegalArgumentException("입력한 개수가 맞지 않습니다");
+        }
+        
         Arrays.sort(arr);
 
         int start = 0;
