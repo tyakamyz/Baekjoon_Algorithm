@@ -72,7 +72,7 @@ public class Q_1012_유기농_배추 {
     private static int[] moveX = {0, 0, -1, 1};
     private static int[] moveY = {1, -1, 0, 0};
 
-    private static void dfs(int x, int y) {
+    private static void bfs(int x, int y) {
         visited[x][y] = true;
 
         for (int i = 0; i < 4; i++) {
@@ -81,7 +81,7 @@ public class Q_1012_유기농_배추 {
 
             if(pointX >= 0 && pointX < M && pointY >= 0 && pointY < N){
                 if(!visited[pointX][pointY] && cabbageFarm[pointX][pointY] == 1) {
-                    dfs(pointX, pointY);
+                    bfs(pointX, pointY);
                 }
             }
 
@@ -111,7 +111,7 @@ public class Q_1012_유기농_배추 {
             for (int x = 0; x < M; x++) {
                 for (int y = 0; y < N; y++) {
                     if(!visited[x][y] && cabbageFarm[x][y] == 1){
-                        dfs(x,y);
+                        bfs(x,y);
                         count++;
                     }
                 }
