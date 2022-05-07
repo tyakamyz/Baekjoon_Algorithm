@@ -70,7 +70,7 @@ public class Q_7576_토마토 {
     private static int[][] resultDay;
     private static Long maxResultDay = 0L;
 
-    private static List<Map<String, Integer>> nextVisit = new LinkedList<>();
+    private static Queue<Map<String, Integer>> nextVisit = new LinkedList<>();
 
     // 상 하 좌 우
     private final static int[] moveX = {0, 0, -1, 1};
@@ -134,7 +134,7 @@ public class Q_7576_토마토 {
         }
 
         while (nextVisit.size() != 0){
-            Map<String, Integer> xyMap =  nextVisit.remove(0);
+            Map<String, Integer> xyMap =  nextVisit.poll();
             int x = xyMap.get("x");
             int y = xyMap.get("y");
             if(tomatoBox[x][y] == 1){
