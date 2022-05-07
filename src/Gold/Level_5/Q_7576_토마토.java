@@ -68,7 +68,7 @@ public class Q_7576_토마토 {
     private static int M,N;
     private static int[][] tomatoBox;
     private static int[][] resultDay;
-    private static int maxResultDay = 0;
+    private static Long maxResultDay = 0L;
 
     private static List<Map<String, Integer>> nextVisit = new LinkedList<>();
 
@@ -88,7 +88,7 @@ public class Q_7576_토마토 {
                     resultDay[pointX][pointY] = resultDay[x][y] + 1;
 
                     if(maxResultDay < resultDay[x][y] + 1){
-                        maxResultDay = resultDay[x][y] + 1;
+                        maxResultDay = resultDay[x][y] + 1L;
                     }
 
                     Map<String, Integer> xyMap = new HashMap<>();
@@ -142,8 +142,8 @@ public class Q_7576_토마토 {
             }
         }
 
-        if(Arrays.deepToString(resultDay).contains("-1") && maxResultDay != 0){
-            maxResultDay = -1;
+        if(Arrays.deepToString(tomatoBox).contains("0") && maxResultDay != 0){
+            maxResultDay = -1l;
         }
 
         System.out.println(maxResultDay);
