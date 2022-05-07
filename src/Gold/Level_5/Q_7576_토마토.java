@@ -82,7 +82,7 @@ public class Q_7576_토마토 {
             int pointX = x + moveX[i];
             int pointY = y + moveY[i];
 
-            if(pointX >= 0 && pointX < M && pointY >= 0 && pointY < N){
+            if(pointX >= 0 && pointX < N && pointY >= 0 && pointY < M){
                 if(resultDay[pointX][pointY] == -1 && tomatoBox[pointX][pointY] == 0){
                     tomatoBox[pointX][pointY] = 1;
                     resultDay[pointX][pointY] = resultDay[x][y] + 1;
@@ -109,11 +109,11 @@ public class Q_7576_토마토 {
         M = inputArraySize[0];
         N = inputArraySize[1];
 
-        tomatoBox = new int[M][N];
-        resultDay = new int[M][N];
+        tomatoBox = new int[N][M];
+        resultDay = new int[N][M];
 
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
                 resultDay[i][j] = -1;
             }
         }
@@ -121,13 +121,13 @@ public class Q_7576_토마토 {
         for (int i = 0; i < N; i++) {
             int[] inputTomatos = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             for (int j = 0; j < M; j++) {
-                tomatoBox[j][i] = inputTomatos[j];
+                tomatoBox[i][j] = inputTomatos[j];
                 if(inputTomatos[j] == 1){
-                    resultDay[j][i] = 0;
+                    resultDay[i][j] = 0;
 
                     Map<String, Integer> xyMap = new HashMap<>();
-                    xyMap.put("x", j);
-                    xyMap.put("y", i);
+                    xyMap.put("x", i);
+                    xyMap.put("y", j);
                     nextVisit.add(xyMap);
                 }
             }
