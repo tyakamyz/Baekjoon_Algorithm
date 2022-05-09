@@ -142,7 +142,7 @@ public class Q_7576_토마토 {
             }
         }
 
-        if(Arrays.deepToString(tomatoBox).contains("0") && maxResultDay != 0){
+        if(Arrays.deepToString(tomatoBox).contains("0")){
             maxResultDay = -1l;
         }
 
