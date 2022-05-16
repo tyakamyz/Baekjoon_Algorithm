@@ -70,7 +70,7 @@ public class Q_7576_토마토 {
     private static int[][] resultDay;
     private static Long maxResultDay = 0L;
 
-    private static Queue<Map<String, Integer>> nextVisit = new LinkedList<>();
+    private static Queue<Tomato> nextVisit = new LinkedList<>();
 
     // 상 하 좌 우
     private final static int[] moveX = {0, 0, -1, 1};
@@ -91,10 +91,7 @@ public class Q_7576_토마토 {
                         maxResultDay = resultDay[x][y] + 1L;
                     }
 
-                    Map<String, Integer> xyMap = new HashMap<>();
-                    xyMap.put("x", pointX);
-                    xyMap.put("y", pointY);
-                    nextVisit.add(xyMap);
+                    nextVisit.add(new Tomato(pointX, pointY));
                 } else if(resultDay[pointX][pointY] == -1 && tomatoBox[pointX][pointY] == -1){
                     resultDay[pointX][pointY] = -2;
                 }
@@ -124,28 +121,32 @@ public class Q_7576_토마토 {
                 tomatoBox[i][j] = inputTomatos[j];
                 if(inputTomatos[j] == 1){
                     resultDay[i][j] = 0;
-
-                    Map<String, Integer> xyMap = new HashMap<>();
-                    xyMap.put("x", i);
-                    xyMap.put("y", j);
-                    nextVisit.add(xyMap);
+                    nextVisit.add(new Tomato(i, j));
                 }
             }
         }
 
         while (nextVisit.size() != 0){
-            Map<String, Integer> xyMap =  nextVisit.poll();
-            int x = xyMap.get("x");
-            int y = xyMap.get("y");
-            if(tomatoBox[x][y] == 1){
-                bfs(x, y);
+            Tomato tomato =  nextVisit.poll();
+            if(tomatoBox[tomato.x][tomato.y] == 1){
+                bfs(tomato.x, tomato.y);
             }
         }
 
-        if(Arrays.deepToString(tomatoBox).contains("0") && maxResultDay != 0){
-            maxResultDay = -1l;
+        if(Arrays.deepToString(tomatoBox).contains("0")){
+            maxResultDay = -1L;
         }
 
         System.out.println(maxResultDay);
+    }
+
+    static class Tomato{
+        int x;
+        int y;
+
+        public Tomato(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
     }
 }
