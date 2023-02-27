@@ -107,7 +107,7 @@ public class Q_15649_N과_M_1 {
         N = input[0];
         M = input[1];
 
-        answer = new int[M+1];
-        used = new int[M+1];
+        answer = new int[9];
+        used = new int[9];
     }
 }
